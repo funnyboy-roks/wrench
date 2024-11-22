@@ -1,0 +1,10 @@
+[package]
+name = "wren"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+anyhow = "1.0.93"
+chronos = "0.0.0"
+clap = { version = "4.5.21", features = ["derive"] }
+regex = "1.11.1"
