@@ -2,6 +2,9 @@
 name = "wrench"
 version = "0.1.0"
 edition = "2021"
+description = "Rename files matching a regular expression by replacing parts of their name"
+license = "Apache-2.0"
+homepage = "https://github.com/funnyboy-roks/wrench"
 
 [dependencies]
 anyhow = "1.0.93"
