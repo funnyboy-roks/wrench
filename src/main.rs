@@ -1,4 +1,4 @@
-use std::path::PathBuf;
+use std::{path::PathBuf, process};
 
 use anyhow::Context;
 use clap::Parser;
@@ -78,6 +78,7 @@ fn main() -> anyhow::Result<()> {
         renames.push((file, new_path));
     }
 
+    let mut renamed = false;
     for (from, to) in &renames {
         if from == to {
             if !cli.quiet {
@@ -95,6 +96,12 @@ fn main() -> anyhow::Result<()> {
                 format!("Cannot rename file {} -> {}", from.display(), to.display())
             })?;
         }
+        renamed = true;
+    }
+
+    if !renamed {
+        // If we didn't rename anything, give an error status
+        process::exit(1);
     }
 
     Ok(())

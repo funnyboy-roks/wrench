@@ -1,4 +1,4 @@
-# Wren
+# Wrench
 
 A command-line tool for mass-renaming of files from one pattern to another using
 regular expressions.
@@ -10,7 +10,7 @@ $ ls
 'Episode 1 - Hello.mkv'  'Episode 2 - World.mkv'  'Episode 3 - How.mkv'  'Episode 4 - Are.mkv'  'Episode 5 - You.mkv'
 'Episode 1 - Hello.srt'  'Episode 2 - World.srt'  'Episode 3 - How.srt'  'Episode 4 - Are.srt'  'Episode 5 - You.srt'
 
-$ wren '^Episode (\d+).*\.' 'S01E0$1.' *
+$ wrench '^Episode (\d+).*\.' 'S01E0$1.' *
 'Episode 1 - Hello.mkv' -> 'S01E01.mkv'
 'Episode 1 - Hello.srt' -> 'S01E01.srt'
 'Episode 2 - World.mkv' -> 'S01E02.mkv'
