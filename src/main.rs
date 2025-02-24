@@ -42,6 +42,9 @@ struct Cli {
     /// Files to attempt to rename
     #[clap(required = true, name = "files")]
     files: Vec<PathBuf>,
+
+    #[arg(short, long)]
+    copy: bool,
 }
 
 fn main() -> anyhow::Result<()> {
@@ -88,13 +91,23 @@ fn main() -> anyhow::Result<()> {
         }
 
         if !cli.quiet {
-            println!("'{}' -> '{}'", from.display(), to.display());
+            if cli.copy {
+                println!("'{}' copied -> '{}'", from.display(), to.display());
+            } else {
+                println!("'{}' -> '{}'", from.display(), to.display());
+            }
         }
 
         if !cli.dry_run {
-            std::fs::rename(from, to).with_context(|| {
-                format!("Cannot rename file {} -> {}", from.display(), to.display())
-            })?;
+            if cli.copy {
+                std::fs::copy(from, to).with_context(|| {
+                    format!("Cannot copy file {} -> {}", from.display(), to.display())
+                })?;
+            } else {
+                std::fs::rename(from, to).with_context(|| {
+                    format!("Cannot rename file {} -> {}", from.display(), to.display())
+                })?;
+            }
         }
         renamed = true;
     }
