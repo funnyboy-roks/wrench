@@ -43,6 +43,7 @@ struct Cli {
     #[clap(required = true, name = "files")]
     files: Vec<PathBuf>,
 
+    // Add "--copy" flag to copy files to destination instead of moving them.
     #[arg(short, long)]
     copy: bool,
 }
